@@ -14,8 +14,18 @@ import java.util.List;
 
 // import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;  // <--- Import Package
 
+// com.shoppingcart should be your package name
+import com.shoppingcart.generated.BasePackageList;
+
+import java.util.Arrays;
+ 
+import org.unimodules.adapters.react.ModuleRegistryAdapter;
+import org.unimodules.adapters.react.ReactModuleRegistryProvider;
+import org.unimodules.core.interfaces.SingletonModule;
 
 public class MainApplication extends Application implements ReactApplication {
+ private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(new BasePackageList().getPackageList(), null);
+ 
 
   private final ReactNativeHost mReactNativeHost =
       new ReactNativeHost(this) {
@@ -31,6 +41,13 @@ public class MainApplication extends Application implements ReactApplication {
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
           // packages.add(new ReactNativePushNotificationPackage());
+
+          // Add unimodules
+          List<ReactPackage> unimodules = Arrays.<ReactPackage>asList(
+            new ModuleRegistryAdapter(mModuleRegistryProvider)
+          );
+          packages.addAll(unimodules);
+
           return packages;
         }
 

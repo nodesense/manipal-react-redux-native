@@ -12,7 +12,10 @@ import ThemeContext from './contexts/ThemeContext';
 
 import LanguageContext, {english, arabic} from './contexts/LanguageContext';
 
- 
+import { Constants } from 'react-native-unimodules';
+
+console.log("**System Fonts" , Constants.systemFonts);
+
 // explicity provide color theme from app component
 
 const languages = {
