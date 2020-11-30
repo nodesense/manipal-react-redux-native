@@ -9,6 +9,8 @@ import {Provider} from 'react-redux';
 
 import {name as appName} from './app.json';
 
+
+// Provider store={store} is using React context to pass the store to containers
 const AppContainer = () => (
     <Provider store={store}>
         <App></App>

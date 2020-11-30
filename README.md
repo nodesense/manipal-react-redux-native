@@ -76,6 +76,11 @@ npm run ios
 ```
 ---
 
+
+```
+npm install rxjs
+```
+
 Java home to be set
 ```
 
@@ -110,6 +115,7 @@ npm install redux redux-thunk react-redux
 
 npm install @react-navigation/drawer
 
+npm install formik yup
 
 
 install react native extention
@@ -146,3 +152,94 @@ action-types.js
 // FavList Container
         bring favorites from stoer to component
         dispatch
+
+Hooks
+    Revise
+    useMemo
+    useCallback
+    useState
+
+React Native 
+    Camera
+    File System - known already
+    GPS locations
+    SQLite
+    Storage
+    Building
+    Debugging
+    Production Build
+    iOS Module - call from react, call react from ios/objective C
+    Java Modle - call from react, call react from android/java
+    Layout - flex 
+    \
+
+
+Keep the signed file in the android/app directory
+
+https://www.decoide.org/react-native/docs/signed-apk-android.html
+
+
+Clear watchman watches: 
+
+watchman watch-del-all.
+Delete the node_modules folder: 
+
+rm -rf node_modules && npm install.
+
+Reset Metro Bundler cache:
+
+ rm -rf /tmp/metro-bundler-cache-* or npm start -- --reset-cache.
+
+Remove haste cache: 
+
+rm -rf /tmp/haste-map-react-native-packager-*.
+
+
+ 1. Clear watchman watches: watchman watch-del-all
+ 2. Delete node_modules: rm -rf node_modules and run yarn install
+ 3. Reset Metro's cache: yarn start --reset-cache
+ 4. Remove the cache: rm -rf /tmp/metro-*
+
+
+
+
+https://codewithchris.com/submit-your-app-to-the-app-store/
+
+
+Promise
+    what is promise?
+        differed call
+        delayed response
+        async
+
+        Promise.all([])
+
+        async storage
+            check if data in local storage
+                get from local
+            if not go to internet and get the data
+
+
+
+Search Features?
+    input box
+        Apple
+            1 char -> send request to server
+            2 char -> send a request to server
+            ..
+            ..
+                for each char added, send request to server
+
+            debounce - 400 ms gap
+
+            rxjs
+
+
+
+npm install   react-native-push-notification
+
+
+https://medium.com/@Jscrambler/implementing-react-native-push-notifications-in-android-apps-7e0234dee7b7
+
+https://github.com/JscramblerBlog/RNnotifications-demo
+

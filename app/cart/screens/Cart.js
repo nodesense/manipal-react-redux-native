@@ -7,6 +7,9 @@ import {ScrollView,
 
 import CartSummary from '../components/CartSummary';
 import CartList from '../components/CartList';
+import LanguageContext from '../../contexts/LanguageContext';
+ 
+// redux with containers
 
 const Cart = (props) => {
     const {items, amount, count, addItem, emptyCart, removeItem, navigation} = props;
@@ -18,10 +21,15 @@ const Cart = (props) => {
              <Text> Amount {amount} </Text>
              <Text> Qty {count} </Text>
 
-             <Button title="Add Item" onPress={addItem} />
-             <Button title="Empty" onPress={emptyCart} />
-
-             <Button title="Checkout" onPress= { () =>  navigation.navigate('Checkout')  } />
+             <LanguageContext.Consumer>
+                 {(langDict) => (
+                    <>
+                    <Button title={langDict.addItem} onPress={addItem} />
+                    <Button title={langDict.empty} onPress={emptyCart} />
+                    <Button title={langDict.checkout} onPress= { () =>  navigation.navigate('Checkout')  } />
+                    </>
+                 )}
+             </LanguageContext.Consumer>
 
 
              <CartList items = {items} removeItem={(id) => removeItem(id)} />

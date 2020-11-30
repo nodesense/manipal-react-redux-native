@@ -9,8 +9,8 @@ import {
 } from '@react-navigation/drawer';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
+  
 
- 
 import React from 'react';
 import {
   SafeAreaView,
@@ -27,6 +27,13 @@ import Cart from '../cart/containers/Cart'
 import ProductList from '../cart/containers/ProductList'
 import Checkout from '../cart/screens/Checkout'
 import Counter from '../containers/Counter';
+import HookExample from '../components/HookExample';
+import PromiseExample from '../components/PromiseExample';
+import RxJsExample from '../components/RxJsExample';
+import CartScreen from '../cart/screens/CartScreen';
+
+import { LocalNotification } from '../services/LocalPushController';
+
  
 function Home(props) {
   const {navigation} = props;
@@ -47,7 +54,7 @@ const Drawer = createDrawerNavigator();
 
 // reference : React nativation docs
 function CustomDrawerContent(props) {
-    const {logout} = props;
+    const {logout, memoizedSetLangCallback} = props;
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
@@ -63,16 +70,38 @@ function CustomDrawerContent(props) {
         label="Logout"
         onPress={() =>  logout() }
       />
+
+    <DrawerItem
+        label="Arabic"
+        onPress={() =>  memoizedSetLangCallback("arabic") }
+    />
+
+    <DrawerItem
+        label="English"
+        onPress={() =>  memoizedSetLangCallback("english") }
+      />
+
+    <DrawerItem
+        label="Notification"
+        onPress={() =>  {
+          LocalNotification()
+        } }
+      />
+ 
+
     </DrawerContentScrollView>
   );
 }
 
-const Shell = ({logout}) => {
+const Shell = ({logout, memoizedSetLangCallback}) => {
   return (
     <>
       <NavigationContainer>
         
-      <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} logout={logout} />}>
+      <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} 
+                                                    logout={logout}
+                                                    memoizedSetLangCallback={memoizedSetLangCallback}
+                                                    />}>
   
 
       <Drawer.Screen name="Home" component={Home} options={{ title: 'Home'}}/>
@@ -101,9 +130,7 @@ const Shell = ({logout}) => {
           />
           )
            }} />
-           
-
-
+            
        
         <Drawer.Screen name="Checkout" component={Checkout}  options={{ 
           title: 'Checkout',
@@ -115,6 +142,14 @@ const Shell = ({logout}) => {
           />
           )
           }}/>
+
+        <Drawer.Screen name="Hooks" component={HookExample} />
+
+        <Drawer.Screen name="Promise" component={PromiseExample} />
+ 
+        <Drawer.Screen name="Rxjs" component={RxJsExample} />
+        <Drawer.Screen name="CartPerf" component={CartScreen} />
+ 
       </Drawer.Navigator>
     </NavigationContainer>
     </>
